@@ -1,0 +1,16 @@
+### Testing GET PROVE
+GET http://localhost:8000/api/
+### Testing GET
+GET http://localhost:8000/api/messages/sync
+
+###Testing POST
+POST http://localhost:8000/api/messages/new
+Content-Type: application/json
+
+{
+    "message" : "Bien y tú",
+    "name" : "Stefano",
+    "timestamp" : "Demo timestamp",
+    "received" : false
+}
+
