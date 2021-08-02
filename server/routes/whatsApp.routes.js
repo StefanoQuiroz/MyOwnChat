@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express();
 
-const { findAll, createMessage } = require('../controllers/whatsApp.controller');
+const { prove, findAll, createMessage } = require('../controllers/whatsApp.controller');
 
-router.get(`/`, findAll);
-router.get(`/messages/new`, createMessage);
+router.get(`/`, prove);
+router.get(`/messages/sync`, findAll);
+router.post(`/messages/new`, createMessage);
 
 module.exports = router;

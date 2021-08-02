@@ -4,6 +4,7 @@ const WhatsAppSchema = new mongoose.Schema({
     message: String,
     name: String,
     timestamp: String,
+    received: Boolean
 
 }, {timestamps: true});
 
