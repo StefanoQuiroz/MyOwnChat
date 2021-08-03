@@ -7,8 +7,8 @@ export default function SideBarChat() {
         <div className={styles.sideBarChat}>
             <Avatar/>
             <div className={styles.sideBarChatInfo}>
-                <h2>Room name</h2>
-                <p>This is the las message</p>
+                <h2>Nombre</h2>
+                <p>Mensaje de Prueba</p>
             </div>        
         </div>
     )

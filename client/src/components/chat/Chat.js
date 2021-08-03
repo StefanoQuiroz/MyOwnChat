@@ -10,8 +10,8 @@ const Chat = () => {
             <div className={styles.chatHeader}>
                 <Avatar/>
                 <div className={styles.chatHeaderInfo}>
-                    <h3>Room name</h3>
-                    <p>Last seen at...</p>
+                    <h3>Nombre</h3>
+                    <p>últ. vez hoy a las(s) ... </p>
                 </div>
                 <div className={styles.chatHeaderRight}>
                     <IconButton>
@@ -29,21 +29,21 @@ const Chat = () => {
             <div className={styles.chatBody}>
                 <p className={styles.chatMessage}>
                     <span className={styles.chatName}>Coding Dojo</span>
-                    This is a message
+                    Mensaje escrito de Coding Dojo
                     <span className={styles.chatTimeStamp}>
                         {new Date().toUTCString()}
                     </span>
                 </p>
                 <p className={styles.chatReciever}>
                     <span className={styles.chatName}>Stefano</span>
-                    This is a message
+                    Mensaje escrito de Stefano
                     <span className={styles.chatTimeStamp}>
                         {new Date().toUTCString()}
                     </span>
                 </p>
                 <p className={styles.chatMessage}>
                     <span className={styles.chatName}>Coding Dojo</span>
-                    This is a message
+                    Mensaje escrito de Coding Dojo
                     <span className={styles.chatTimeStamp}>
                         {new Date().toUTCString()}
                     </span>
