@@ -8,7 +8,7 @@ POST http://localhost:8000/api/messages/new
 Content-Type: application/json
 
 {
-    "message" : "Nuevo Mensaje 2",
+    "message" : "Nuevo Mensaje #22",
     "name" : "Stefano",
     "timestamp" : "Demo timestamp",
     "received" : false
