@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require('express');
-const mongoose = require('mongoose');
+
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT;
@@ -10,20 +10,11 @@ const PORT = process.env.PORT;
 const mongo = require('./config/mongoDB.config');
 mongo();
 
-
+//pusher connection
 require('./config/pusher.config');
 
-const db = mongoose.connection;
-db.once('open', ()=>{
-    console.log("DB connected");
-    const msgCollection = db.collection('message');
-    const changeStream = msgCollection.watch();
-    changeStream.on("change", (change) => {
-        console.log(change);
-    })
-})
-
 app.use(cors({credentials: true, origin:"http://localhost:3000"}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
 app.use(`/api`, require('./routes/whatsApp.routes'))

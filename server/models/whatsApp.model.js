@@ -8,7 +8,7 @@ const WhatsAppSchema = new mongoose.Schema({
 
 }, {timestamps: true});
 
-const WhatsApp = mongoose.model("message", WhatsAppSchema);
+const WhatsApp = mongoose.model("messages", WhatsAppSchema);
 
 module.exports = WhatsApp;
 
