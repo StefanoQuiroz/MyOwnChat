@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Chat.module.scss'; 
 import { Avatar, IconButton } from '@material-ui/core';
-import { SearchOutlined, AttachFile, MoreVert } from '@material-ui/icons';
+import { AttachFile, MoreVert } from '@material-ui/icons';
 import { FaRegSmileWink } from "react-icons/fa";
 import { BiMicrophone } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";

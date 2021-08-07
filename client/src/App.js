@@ -4,6 +4,8 @@ import Chat from './components/chat/Chat';
 import SideBar from './components/sideBar/SideBar';
 import Pusher from 'pusher-js';
 import axios from 'axios';
+import Login from './components/login/Login';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
 
@@ -39,10 +41,19 @@ function App() {
   
   return (
     <div className="app">
-      <div className="wspBody">
-        <SideBar />
-        <Chat messages={messages} setMessages={setMessages}/>  
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path={`/login`}>
+            <Login/>
+          </Route>
+          <Route path={`/`}>
+            <div className="wspBody">
+              <SideBar />
+              <Chat messages={messages} setMessages={setMessages}/>  
+            </div>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
