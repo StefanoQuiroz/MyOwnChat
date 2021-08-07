@@ -8,9 +8,19 @@ POST http://localhost:8000/api/messages/new
 Content-Type: application/json
 
 {
-    "message" : "Nuevo Mensaje #22",
-    "name" : "Stefano",
+    "message" : "Nuevo Mensaje #26",
+    "name" : "Mario",
+    "timestamp" : "Demo timestamp",
+    "received" : true
+}
+
+###Testing POST false
+POST http://localhost:8000/api/messages/new
+Content-Type: application/json
+
+{
+    "message" : "Nuevo Mensaje #26",
+    "name" : "Mario",
     "timestamp" : "Demo timestamp",
     "received" : false
 }
-
