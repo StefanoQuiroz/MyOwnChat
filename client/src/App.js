@@ -23,10 +23,10 @@ function App() {
     
     const channel = pusher.subscribe('messages');
     channel.bind('inserted', function(data) {
-      alert(JSON.stringify(data));
+      //alert(JSON.stringify(data));
       setMessages([...messages, data])
     });
-    
+
     //funcion para limpiar, evita la saturacion de la data
     return ()=>{
       channel.unbind_all();
@@ -40,8 +40,8 @@ function App() {
   return (
     <div className="app">
       <div className="wspBody">
-        <SideBar/>
-        <Chat/>  
+        <SideBar />
+        <Chat messages={messages} setMessages={setMessages}/>  
       </div>
     </div>
   );

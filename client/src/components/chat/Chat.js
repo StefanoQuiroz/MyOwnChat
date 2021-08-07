@@ -2,9 +2,35 @@ import React from 'react';
 import styles from './Chat.module.scss'; 
 import { Avatar, IconButton } from '@material-ui/core';
 import { SearchOutlined, AttachFile, MoreVert } from '@material-ui/icons';
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';  
-import MicIcon from '@material-ui/icons/Mic'
-const Chat = () => {
+import { FaRegSmileWink } from "react-icons/fa";
+import { BiMicrophone } from "react-icons/bi";
+import { AiOutlineSearch } from "react-icons/ai";
+
+//import axios from 'axios';
+
+
+const Chat = (props) => {
+
+    /* const {messages, setMessages} = props;
+    const [input, setInput] = useState('');
+    
+    const createMessage = (event) => {
+        axios.post(`/api/messages/new`, {
+            message : input,
+            name : "Stefano",
+            timestamp : "Demo timestamp",
+            received : true
+        })
+            .then(response => setMessages([...messages, input]))
+            .catch(err => console.error(err));
+        setInput("");
+    }
+    
+    const sendMessage = (event) => {
+        event.preventDefault();
+        createMessage(event);
+    } */
+
     return (
         <div className={styles.chat}>
             <div className={styles.chatHeader}>
@@ -15,10 +41,7 @@ const Chat = () => {
                 </div>
                 <div className={styles.chatHeaderRight}>
                     <IconButton>
-                        <SearchOutlined/>
-                    </IconButton>
-                    <IconButton>
-                        <AttachFile/>
+                        <AiOutlineSearch/>
                     </IconButton>
                     <IconButton>
                         <MoreVert/>
@@ -27,36 +50,47 @@ const Chat = () => {
             </div>
 
             <div className={styles.chatBody}>
-                <p className={styles.chatMessage}>
-                    <span className={styles.chatName}>Coding Dojo</span>
-                    Mensaje escrito de Coding Dojo
-                    <span className={styles.chatTimeStamp}>
-                        {new Date().toUTCString()}
+                
+                <div className={styles.chatMessage}>
+                    <span className={styles.chatName}>Nombre</span>
+                    <p className={ styles.chatMsg}>Tu</p>
+                    <span className={styles.chatTime}>
+                        18:43PM
                     </span>
-                </p>
-                <p className={styles.chatReciever}>
-                    <span className={styles.chatName}>Stefano</span>
-                    Mensaje escrito de Stefano
-                    <span className={styles.chatTimeStamp}>
-                        {new Date().toUTCString()}
+                </div>
+
+                <div className={styles.chatReceived}>
+                    <span className={styles.chatName}>Nombre</span>
+                    <p className={ styles.chatMsg}>Yo</p>
+                    <span className={styles.chatTime}>
+                        18:43PM
                     </span>
-                </p>
-                <p className={styles.chatMessage}>
-                    <span className={styles.chatName}>Coding Dojo</span>
-                    Mensaje escrito de Coding Dojo
+                </div>
+
+                {/* <p className={ true ? styles.chatReciever : styles.chatMessage}>
+                    <span className={styles.chatName}>Nombre</span>
+                    Mensaje
                     <span className={styles.chatTimeStamp}>
-                        {new Date().toUTCString()}
+                        18:43
                     </span>
-                </p>
+                </p> */}
+
             </div>  
 
             <div className={styles.chatFooter}>
-                <InsertEmoticonIcon/>
+                <IconButton>
+                    <FaRegSmileWink className={styles.Icons}/>
+                </IconButton>
+                <IconButton>
+                    <AttachFile className={styles.Icons}/>
+                </IconButton>
                 <form>
-                    <input type="text" placeholder="Type a message"/>
-                    <button type="submit">Send a message</button>
+                    <input type="text" /* value={input} onChange={(event) => setInput(event.target.value)} */ placeholder="Type a message"/>
+                    <button /* onClick={sendMessage} */ type="submit">Escribe un mensaje aquí</button>
                 </form>
-                <MicIcon/>
+                <IconButton>
+                    <BiMicrophone className={styles.Icons}/>
+                </IconButton>
             </div>          
         </div>
     );

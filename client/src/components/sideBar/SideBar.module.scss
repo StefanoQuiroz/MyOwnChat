@@ -13,7 +13,7 @@
 
 .sideBarHeaderRight{
     display: flex;
-    align-items: center;
+    align-items: center; 
     justify-content: space-between;
     min-width: 10vw;
 }
@@ -43,7 +43,7 @@
 }
 
 .sideBarSearchContainer{
-    .MuiSvgIcon-root{
+    .Icon{
         color: gray;
         padding: 10px;
     }

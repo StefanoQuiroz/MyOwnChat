@@ -23,6 +23,14 @@
     }
 }
 
+.chatHeaderRight{
+    display: flex;
+    justify-content: center;
+    min-width: 100px;
+}
+
+
+
 .chatBody{
     flex: 1;
     background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
@@ -31,8 +39,8 @@
     padding: 30px;
     overflow-y: scroll;
 }
-
 .chatMessage{
+    display: flex;
     position: relative;
     font-size: 16px;
     padding: 10px;
@@ -40,9 +48,34 @@
     border-radius: 10px;
     background-color: #fff;
     margin-bottom: 30px;
+    /* &::after { 
+        content: " ";
+        position: absolute;
+        width: 0;
+        top: 0;
+        bottom: auto;
+        border: 22px solid;
+    } */
+    .chatName{
+        position: absolute;
+        top: -18px;
+        font-weight: 800;
+        font-size: 0.8rem;
+        color: #36cd96;          
+    }
 }
 
-.chatReciever{
+.chatTime{
+    display:flex;
+    margin-right: auto;
+    position: relative;
+    margin-top: 1.4rem;
+    font-size: xx-small;
+    color: #00000073;
+}
+
+.chatReceived{
+    display: flex;
     margin-left: auto;
     background-color: #dcf8c6;
     position: relative;
@@ -51,25 +84,32 @@
     width: fit-content;
     border-radius: 10px;
     margin-bottom: 30px;
+    /* &::after { 
+        right: auto;
+        border-color: #fff transparent transparent transparent;
+    } */
+    .chatName{
+        position: absolute;
+        top: -18px;
+        font-weight: 800;
+        font-size: 0.8rem;
+        color: #6bcbef;
+        right: 10px; 
+    }
 }
 
-.chatTimeStamp{
-    margin-left: 10px;
-    font-size: xx-small;
-}
-
-.chatName{
+/* .chatName{
     position: absolute;
     top: -15px;
     font-weight: 800;
     font-size: xx-small;
-}
+} */
 
 .chatFooter{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 62px;
+    height: 4.5rem;
     border-top: 1px solid lightgray;
     form{
         flex: 1;
@@ -79,13 +119,13 @@
             border-radius: 30px;
             padding: 10px;
             border:none;
+            outline-width: 0;
         };
         button{
             display: none;
         }
     }
-    .MuiSvgIcon-root{
-        padding: 10px;
+    .Icons{
         color: gray;
     }    
 }
