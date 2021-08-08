@@ -1,7 +1,7 @@
 .sideBar{
     display: flex;
     flex-direction: column;
-    flex: 0.35;
+    width: 35%;
 }
 
 .sideBarHeader{
@@ -9,6 +9,9 @@
     justify-content: space-between;
     padding: 20px;
     border-right: 1px solid lightgray;
+    .sideBarAvatar{
+        cursor: pointer;
+    }
 }
 
 .sideBarHeaderRight{
@@ -48,14 +51,22 @@
         padding: 10px;
     }
     input{
+        flex: 1;
         border: none;
         margin-left: 10px;
         outline-width: 0;
     }
 }
 
-.sideBarChats{
+.sideBarChatsList{
     flex: 1;
     background-color: #fff;
     overflow: scroll;
+    &::-webkit-scrollbar{
+        width: 6px;
+        height: 6px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: rgba(0,0,0,0.2);
+    }
 }

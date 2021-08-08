@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Chat.module.scss'; 
+import './Chat.scss'; 
 import { Avatar, IconButton } from '@material-ui/core';
 import { AttachFile, MoreVert } from '@material-ui/icons';
 import { FaRegSmileWink } from "react-icons/fa";
@@ -32,14 +32,14 @@ const Chat = (props) => {
     } */
 
     return (
-        <div className={styles.chat}>
-            <div className={styles.chatHeader}>
+        <div className="chat">
+            <div className="chatHeader">
                 <Avatar/>
-                <div className={styles.chatHeaderInfo}>
+                <div className="chatHeaderInfo">
                     <h3>Nombre</h3>
                     <p>últ. vez hoy a las(s) ... </p>
                 </div>
-                <div className={styles.chatHeaderRight}>
+                <div className="chatHeaderRight">
                     <IconButton>
                         <AiOutlineSearch/>
                     </IconButton>
@@ -49,20 +49,20 @@ const Chat = (props) => {
                 </div>
             </div>
 
-            <div className={styles.chatBody}>
+            <div className="chatBody">
                 
-                <div className={styles.chatMessage}>
-                    <span className={styles.chatName}>Nombre</span>
-                    <p className={ styles.chatMsg}>Tu</p>
-                    <span className={styles.chatTime}>
+                <div className="chatMessage">
+                    <span className="chatName">Nombre</span>
+                    <p className="chatMsg">Tu</p>
+                    <span className="chatTime">
                         18:43PM
                     </span>
                 </div>
 
-                <div className={styles.chatReceived}>
-                    <span className={styles.chatName}>Nombre</span>
-                    <p className={ styles.chatMsg}>Yo</p>
-                    <span className={styles.chatTime}>
+                <div className="chatReceived">
+                    <span className="chatName">Nombre</span>
+                    <p className="chatMsg">Yo</p>
+                    <span className="chatTime">
                         18:43PM
                     </span>
                 </div>
@@ -77,19 +77,19 @@ const Chat = (props) => {
 
             </div>  
 
-            <div className={styles.chatFooter}>
+            <div className="chatFooter">
                 <IconButton>
-                    <FaRegSmileWink className={styles.Icons}/>
+                    <FaRegSmileWink className="Icons"/>
                 </IconButton>
                 <IconButton>
-                    <AttachFile className={styles.Icons}/>
+                    <AttachFile className="Icons"/>
                 </IconButton>
                 <form>
                     <input type="text" /* value={input} onChange={(event) => setInput(event.target.value)} */ placeholder="Type a message"/>
                     <button /* onClick={sendMessage} */ type="submit">Escribe un mensaje aquí</button>
                 </form>
                 <IconButton>
-                    <BiMicrophone className={styles.Icons}/>
+                    <BiMicrophone className="Icons"/>
                 </IconButton>
             </div>          
         </div>

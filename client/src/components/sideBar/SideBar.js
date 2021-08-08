@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './SideBar.module.scss';
+import React, { useState } from 'react';
+import './SideBar.scss';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -8,35 +8,49 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 import SideBarChat from '../sideBarChat/SideBarChat';
 
-const SideBar = () => {
+const SideBar = (props) => {
+
+    const [chats, setChats] = useState([
+        {id: 1, name: "Stefano", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
+        {id: 2, name: "Piero", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
+        {id: 3, name: "Andrés", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
+        {id: 4, name: "Xavier", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" }
+    ]);
+    const {setActiveChat} = props 
+
     return (
-        <div className={styles.sideBar}>
-            <div className={styles.sideBarHeader}>
-                <Avatar src="https://avatars.githubusercontent.com/u/72056993?v=4"/>
-                <div className={styles.sideBarHeaderRight}>
+        <div className="sideBar">
+            <div className="sideBarHeader">
+                <Avatar className="sideBarAvatar" src="https://avatars.githubusercontent.com/u/72056993?v=4"/>
+                <div className="sideBarHeaderRight">
                     <IconButton>
-                        <DonutLargeIcon/>
+                        <DonutLargeIcon style={{color: "#919191"}}/>
                     </IconButton>
                     <IconButton>
-                        <ChatIcon/>
+                        <ChatIcon style={{color: "#919191"}}/>
                     </IconButton>
                     <IconButton>
-                        <MoreVertIcon/>
+                        <MoreVertIcon style={{color: "#919191"}}/>
                     </IconButton>
                 </div>
             </div>
             
-            <div className={styles.sideBarSearch}>
-                <div className={styles.sideBarSearchContainer}>
-                    <AiOutlineSearch className={styles.Icon} />
-                    <input type="text" placeholder="Busca un chat o inicia uno nuevo" />
+            <div className="sideBarSearch">
+                <div className="styles.sideBarSearchContainer">
+                    <AiOutlineSearch className="styles.Icon" />
+                    <input type="search" placeholder="Busca un chat o inicia uno nuevo" />
                 </div>
             </div>
 
-            <div className={styles.sideBarChats}>
-                <SideBarChat/>
-                <SideBarChat/>
-                <SideBarChat/>
+            <div className="sideBarChatsList">
+                {chats && chats.map((items, index) =>
+                    <SideBarChat
+                        key={index}
+                        active={true}
+                        chats={chats}
+                        onClick={()=>setActiveChat(chats[index])}
+                    /> 
+                )}
             </div>
         </div>
     );

@@ -5,16 +5,29 @@
     border-bottom: 1px solid #f6f6f6;
 }
 
-.sideBarChat:hover{
+.active{
     background-color: #ebebeb;
+}
+
+.sideBarChat:hover{
+    background-color: #f5f5f5;
     cursor: pointer;
 }
 
 .sideBarChatInfo{
     margin-left: 15px;
+    //para los ...
+    flex-wrap: wrap;
+    min-width: 0;
     h2{
         font-size: 16px;
-        margin-bottom: 8px;
+    }
+    p{
+        //para los ...
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 0; 
     }
 } 
 
