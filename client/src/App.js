@@ -13,7 +13,7 @@ function App() {
     <div className="app">
      {/*  <Login/> */}
       <div className="wspBody"> 
-        <SideBar setActiveChat={setActiveChat} />
+        <SideBar activeChat={activeChat} setActiveChat={setActiveChat} />
         {(activeChat.id === undefined) ? <ChatIntro/> : <Chat />}
       </div>
     </div>

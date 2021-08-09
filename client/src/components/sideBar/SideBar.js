@@ -16,7 +16,7 @@ const SideBar = (props) => {
         {id: 3, name: "Andrés", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
         {id: 4, name: "Xavier", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" }
     ]);
-    const {setActiveChat} = props 
+    const {activeChat,setActiveChat} = props 
 
     return (
         <div className="sideBar">
@@ -36,7 +36,7 @@ const SideBar = (props) => {
             </div>
             
             <div className="sideBarSearch">
-                <div className="styles.sideBarSearchContainer">
+                <div className="sideBarSearchContainer">
                     <AiOutlineSearch className="styles.Icon" />
                     <input type="search" placeholder="Busca un chat o inicia uno nuevo" />
                 </div>
@@ -46,7 +46,7 @@ const SideBar = (props) => {
                 {chats && chats.map((items, index) =>
                     <SideBarChat
                         key={index}
-                        active={true}
+                        active={activeChat.id === chats[index].id}
                         chats={chats}
                         onClick={()=>setActiveChat(chats[index])}
                     /> 
