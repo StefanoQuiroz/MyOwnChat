@@ -11,10 +11,10 @@ import SideBarChat from '../sideBarChat/SideBarChat';
 const SideBar = (props) => {
 
     const [chats, setChats] = useState([
-        {id: 1, name: "Stefano", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
-        {id: 2, name: "Piero", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
-        {id: 3, name: "Andrés", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
-        {id: 4, name: "Xavier", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" }
+        {id: 1, name: "Stefano", message:"Hola Como estas", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
+        {id: 2, name: "Piero", message:"Hola Como estas", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
+        {id: 3, name: "Andrés", message:"Hola Como estas", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
+        {id: 4, name: "Xavier", message:"Hola Como estas", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" }
     ]);
     const {activeChat,setActiveChat} = props 
 
@@ -43,11 +43,11 @@ const SideBar = (props) => {
             </div>
 
             <div className="sideBarChatsList">
-                {chats && chats.map((items, index) =>
+                {chats && chats.map((item, index) =>
                     <SideBarChat
                         key={index}
+                        data={item}
                         active={activeChat.id === chats[index].id}
-                        chats={chats}
                         onClick={()=>setActiveChat(chats[index])}
                     /> 
                 )}

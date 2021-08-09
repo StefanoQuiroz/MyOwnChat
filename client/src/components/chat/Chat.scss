@@ -8,6 +8,7 @@
 .chatHeader{
     padding: 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid lightgray;
 }
@@ -106,6 +107,22 @@
     font-size: xx-small;
 } */
 
+.chatEmoji{
+    height:  14rem;
+    overflow-y: hidden;
+    //animacion para tirarlo abajo
+    transition: all ease 0.3s;
+    aside.emoji-picker-react{
+        width: 100%;
+        //background-color: #f0f0f0;
+        background: none;
+        .emoji-group:before{
+            background: none;
+        }
+    }
+}
+
+
 .chatFooter{
     display: flex;
     justify-content: space-between;
@@ -128,6 +145,9 @@
     }
     .Icons{
         color: gray;
+        //para borrar el X
+        overflow: hidden;
+        transition: all ease 0.3s;
     }    
 }
 
