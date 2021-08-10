@@ -8,16 +8,21 @@ import SideBar from './components/sideBar/SideBar';
 
 function App() {
   const [activeChat, setActiveChat] = useState({});
-
+  //login
+  const [user,setUser] = useState({
+    id: 1234,
+    avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png",
+    name: "Stefano"
+  });
   return (
     <div className="app">
      {/*  <Login/> */}
       <div className="wspBody"> 
-        <SideBar activeChat={activeChat} setActiveChat={setActiveChat} />
-        {(activeChat.id === undefined) ? <ChatIntro/> : <Chat />}
+        <SideBar activeChat={activeChat} setActiveChat={setActiveChat} user={user}/>
+        {(activeChat.id === undefined) ? <ChatIntro/> : <Chat user={user} />}
       </div>
     </div>
-  );
+  ); 
 }
 
 export default App;

@@ -9,14 +9,14 @@ import { AiOutlineSearch } from "react-icons/ai";
 import SideBarChat from '../sideBarChat/SideBarChat';
 
 const SideBar = (props) => {
+    const {activeChat,setActiveChat, user} = props 
 
     const [chats, setChats] = useState([
-        {id: 1, name: "Stefano", message:"Hola Como estas", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
-        {id: 2, name: "Piero", message:"Hola Como estas", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
-        {id: 3, name: "Andrés", message:"Hola Como estas", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
-        {id: 4, name: "Xavier", message:"Hola Como estas", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" }
+        {id: 1, name: "Stefano", message:"Hola Como estas", avatar: user.avatar },
+        {id: 2, name: "Piero", message:"Hola Como estas", avatar: user.avatar },
+        {id: 3, name: "Andrés", message:"Hola Como estas", avatar: user.avatar },
+        {id: 4, name: "Xavier", message:"Hola Como estas", avatar: user.avatar }
     ]);
-    const {activeChat,setActiveChat} = props 
 
     return (
         <div className="sideBar">

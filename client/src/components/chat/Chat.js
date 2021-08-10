@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Chat.scss'; 
 import { Avatar, IconButton } from '@material-ui/core';
 import { AttachFile, MoreVert } from '@material-ui/icons';
@@ -7,32 +7,12 @@ import { BiMicrophone } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdSend, MdClose} from "react-icons/md";
 import EmojiPicker from 'emoji-picker-react';
-
-//import axios from 'axios';
-
+import MessageItem from '../messageItem/MessageItem';
 
 const Chat = (props) => {
 
-    /* const {messages, setMessages} = props;
-    const [input, setInput] = useState('');
-    
-    const createMessage = (event) => {
-        axios.post(`/api/messages/new`, {
-            message : input,
-            name : "Stefano",
-            timestamp : "Demo timestamp",
-            received : true
-        })
-            .then(response => setMessages([...messages, input]))
-            .catch(err => console.error(err));
-        setInput("");
-    }
-    
-    const sendMessage = (event) => {
-        event.preventDefault();
-        createMessage(event);
-    } */
-
+    const {user} = props;
+    const name = useRef();
     let recognition = null;
     let SpeechRecognition = window.webkitSpeechRecognition;
     if(SpeechRecognition !== undefined){
@@ -43,29 +23,60 @@ const Chat = (props) => {
         //recognition.lang="en-GB";
         //recognition.lang="it-IT";
         //recognition.lang=["pt-BR", "es-AR", "es-CL", "es-PE", "es-MX", "es-VE", "it-IT", "fr-FR", "de-DE", "en-GB", "en-US"]
-
+        
     }
     
     const [emojiOpen, setEmojiOpen] = useState(false);
     const [listening, setListening] = useState(false);
     const [input, setInput] = useState("");
+    const [listMessages, setListMessages] = useState([
+        {name:123, message: "Hola como va?1"},
+        {name: 123, message: "Hola como va?2"},
+        {name: 1234, message: "Hola como va?3"},
+        {name:123, message: "Hola como va?1"},
+        {name: 123, message: "Hola como va?2"},
+        {name: 1234, message: "Hola como va?3"},
+        {name:123, message: "Hola como va?1"},
+        {name: 123, message: "Hola como va?2"},
+        {name: 1234, message: "Hola como va?3"},
+        {name:123, message: "Hola como va?1"},
+        {name: 123, message: "Hola como va?2"},
+        {name: 1234, message: "Hola como va?3"},
+        {name:123, message: "Hola como va?1"},
+        {name: 123, message: "Hola como va?2"},
+        {name: 1234, message: "Hola como va?3"},
+        {name:123, message: "Hola como va?1"},
+        {name: 123, message: "Hola como va?2"},
+        {name: 1234, message: "Hola como va?3"},
+        {name:123, message: "Hola como va?1"},
+        {name: 123, message: "Hola como va?2"},
+        {name: 1234, message: "Hola como va?3"},
+        {name:123, message: "Hola como va?1"},
+        {name: 123, message: "Hola como va?2"},
+        {name: 1234, message: "Hola como va?3"}
+    ]);
+    
+    //Para enviar al último chat de cada sala
+    useEffect(()=>{
+        if(name.current.scrollHeight > name.current.offsetHeight){
+            name.current.scrollTop = name.current.scrollHeight - name.current.offsetHeight;
+        }
+    }, [listMessages]);
 
     const onEmojiClick = (event, emojiObject) => {
         //console.log(emojiObject);
         setInput(input + emojiObject.emoji)      
     }
-
+    
     //console.log(input);
-
+    
     const onOpenEmoji = () => {
         setEmojiOpen(true);
     }
-
+    
     const onCloseEmoji = () => {
         setEmojiOpen(false);
     }
-
-
 
     const onClickMicro = () => {
         if(recognition !== null){
@@ -89,6 +100,9 @@ const Chat = (props) => {
 
     return (
         <div className="chat">
+
+            {/* HEADER */}
+
             <div className="chatHeader">
                 <Avatar/>
                 <div className="chatHeaderInfo">
@@ -105,32 +119,16 @@ const Chat = (props) => {
                 </div>
             </div>
 
-            <div className="chatBody">
-                
-                <div className="chatMessage">
-                    <span className="chatName">Nombre</span>
-                    <p className="chatMsg">Tu</p>
-                    <span className="chatTime">
-                        18:43PM
-                    </span>
-                </div>
+            {/* BODY */}
 
-                <div className="chatReceived">
-                    <span className="chatName">Nombre</span>
-                    <p className="chatMsg">Yo</p>
-                    <span className="chatTime">
-                        18:43PM
-                    </span>
-                </div>
-
-                {/* <p className={ true ? styles.chatReciever : styles.chatMessage}>
-                    <span className={styles.chatName}>Nombre</span>
-                    Mensaje
-                    <span className={styles.chatTimeStamp}>
-                        18:43
-                    </span>
-                </p> */}
-
+            <div ref={name} className="chatBody">
+                {listMessages && listMessages.map((item, index) => (
+                    <MessageItem
+                        key={index}
+                        data={item}
+                        user={user}
+                    />
+                ))}
             </div>
 
 
@@ -138,7 +136,7 @@ const Chat = (props) => {
                 <EmojiPicker disableSearchBar disableSkinTonePicker onEmojiClick={onEmojiClick}/>        
             </div>
 
-
+            {/*FOOTER */}
 
             <div className="chatFooter">
                 {emojiOpen ? 
@@ -155,12 +153,12 @@ const Chat = (props) => {
                     <AttachFile className="Icons"/>
                 </IconButton>
                 <form>
-                    <input type="text" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Type a message"/>
+                    <input type="text" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Escribe un mensaje aquí"/>
                     <button /* onClick={sendMessage} */ type="submit">Escribe un mensaje aquí</button>
                 </form>
                 {input === "" ? 
                     <IconButton onClick={onClickMicro}>
-                        <BiMicrophone className="Icons"  style={{color: listening ? "#126ecec" : "#919191"}}/>
+                        <BiMicrophone className="Icons"  style={{color: listening ? "#126ece" : "#919191"}}/>
                     </IconButton>
                     : 
                     <IconButton onClick={onClickMessage}>

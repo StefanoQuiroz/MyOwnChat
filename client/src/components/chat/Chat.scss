@@ -35,77 +35,21 @@
 
 .chatBody{
     flex: 1;
-    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
-    background-repeat: repeat;
-    background-position: center;
-    padding: 30px;
+    height: 100%;
     overflow-y: scroll;
-}
-.chatMessage{
-    display: flex;
-    position: relative;
-    font-size: 16px;
-    padding: 10px;
-    width: fit-content;
-    border-radius: 10px;
-    background-color: #fff;
-    margin-bottom: 30px;
-    /* &::after { 
-        content: " ";
-        position: absolute;
-        width: 0;
-        top: 0;
-        bottom: auto;
-        border: 22px solid;
-    } */
-    .chatName{
-        position: absolute;
-        top: -18px;
-        font-weight: 800;
-        font-size: 0.8rem;
-        color: #36cd96;          
+    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+    background-size: cover;
+    background-position: center;
+    padding: 20px 30px;
+    &::-webkit-scrollbar{
+        width: 6px;
+        height: 6px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: rgba(0,0,0,0.2);
     }
 }
 
-.chatTime{
-    display:flex;
-    margin-right: auto;
-    position: relative;
-    margin-top: 1.4rem;
-    font-size: xx-small;
-    color: #00000073;
-}
-
-.chatReceived{
-    display: flex;
-    margin-left: auto;
-    background-color: #dcf8c6;
-    position: relative;
-    font-size: 16px;
-    padding: 10px;
-    width: fit-content;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    /* &::after { 
-        right: auto;
-        border-color: #fff transparent transparent transparent;
-    } */
-    .chatName{
-        position: absolute;
-        top: -18px;
-        font-weight: 800;
-        font-size: 0.8rem;
-        color: #6bcbef;
-        right: 10px; 
-    }
-}
-
-/* .chatName{
-    position: absolute;
-    top: -15px;
-    font-weight: 800;
-    font-size: xx-small;
-} */
 
 .chatEmoji{
     height:  14rem;
