@@ -14,13 +14,13 @@
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12);
     img{
-        //margin-top: 0.5rem;
+        margin-top: -2rem;
         object-fit: contain;
         height: 100px;
-        //margin-bottom: 40px;
+        margin-bottom: 40px;
     }
-    .Button{
-        margin-top: 1.8rem;
+    Button{
+        margin-top: 1rem;
         text-transform: inherit !important;
         background-color: #0a8d48 !important;
         color: #fff;
