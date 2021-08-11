@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SideBar.scss';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Avatar, IconButton } from '@material-ui/core';
 import { AiOutlineSearch } from "react-icons/ai";
-
 import SideBarChat from '../sideBarChat/SideBarChat';
 import NewChat from '../newChat/NewChat';
+import login from '../../firebase/Api';
 
 const SideBar = (props) => {
     const {activeChat,setActiveChat, user} = props 
@@ -15,6 +15,14 @@ const SideBar = (props) => {
     const [chats, setChats] = useState([]);
 
     const [showNewChat, setShowNewChat] = useState(false);
+
+    useEffect(()=> {
+        if(user !== null){
+            const unsubscribe = login.onChatList(user.id, setChats);
+            return unsubscribe;
+        }
+    }, [user])
+
     const onClickNewChat = () => {
         setShowNewChat(true);
     }

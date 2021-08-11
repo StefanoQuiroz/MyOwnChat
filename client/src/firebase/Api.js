@@ -45,8 +45,8 @@ const DB = firebaseApp.firestore(); //manipulacion de datos
          DB.collection("users").doc(user.id).update({
              chats: firebase.firestore.FieldValue.arrayUnion({
                  chatId: newChat.id,
-                 title: user2.name,
-                 image: user2.avatar,
+                 name: user2.name,
+                 avatar: user2.avatar,
                  with: user2.id //referencia con usuario1
              })
          });
@@ -54,11 +54,21 @@ const DB = firebaseApp.firestore(); //manipulacion de datos
          DB.collection("users").doc(user2.id).update({
              chats: firebase.firestore.FieldValue.arrayUnion({
                  chatId: newChat.id,
-                 title: user.name,
-                 image: user.avatar,
+                 name: user.name,
+                 avatar: user.avatar,
                  with: user.id //referencia con usuario1
              })
          });
+     },
+     onChatList : (userId, setChats) => {
+         return DB.collection("users").doc(userId).onSnapshot((doc) => {
+             if(doc.exists){
+                 const data = doc.data();
+                 if(data.chats){
+                     setChats(data.chats);
+                 }
+             }
+         })
      }
  }
 
