@@ -21,6 +21,7 @@ const NewChat = (props) => {
 
     const addNewChat = async (user2) => {
         await login.addNewChat(user, user2);
+        onClickClose();
     }
 
     const onClickClose = () => {

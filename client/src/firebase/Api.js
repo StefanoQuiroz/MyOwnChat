@@ -37,7 +37,28 @@ const DB = firebaseApp.firestore(); //manipulacion de datos
         return list;
      },
      addNewChat : async (user, user2) => {
-         
+         const newChat = await DB.collection('chats').add({
+             messages: [],
+             users: [user.id, user2.id]
+         });
+
+         DB.collection("users").doc(user.id).update({
+             chats: firebase.firestore.FieldValue.arrayUnion({
+                 chatId: newChat.id,
+                 title: user2.name,
+                 image: user2.avatar,
+                 with: user2.id //referencia con usuario1
+             })
+         });
+
+         DB.collection("users").doc(user2.id).update({
+             chats: firebase.firestore.FieldValue.arrayUnion({
+                 chatId: newChat.id,
+                 title: user.name,
+                 image: user.avatar,
+                 with: user.id //referencia con usuario1
+             })
+         });
      }
  }
 
