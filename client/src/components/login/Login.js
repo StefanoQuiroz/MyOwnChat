@@ -11,7 +11,7 @@ const Login = () => {
         event.preventDefault();
         console.log(input);
         setInput("");
-        history.push(`/`);
+        history.push(`/home`);
 
     }
     return (
@@ -19,9 +19,9 @@ const Login = () => {
             <div className="loginContainer">
                 <form onSubmit={onSubmit}>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="iconWsp" />
-                    <div className={styles.loginText}>
+                    <div className="loginText">
                         {/* <h1>Registrese aquí</h1> */}
-                        <input type="text" placeholder="Ingrese su nombre aqui" value={input} onChange={event => setInput(event.target.value)}/>
+                        {/* <input type="text" placeholder="Ingrese su nombre aqui" value={input} onChange={event => setInput(event.target.value)}/> */}
                     </div>
                     <input type="submit" className="Button" value="Registrarse con Google"/>
                 </form>

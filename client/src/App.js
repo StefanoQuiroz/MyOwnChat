@@ -3,8 +3,8 @@ import './App.scss';
 import Chat from './components/chat/Chat';
 import ChatIntro from './components/chat/ChatIntro';
 import SideBar from './components/sideBar/SideBar';
-//import Login from './components/login/Login';
-//import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Login from './components/login/Login';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
   const [activeChat, setActiveChat] = useState({});
@@ -16,12 +16,19 @@ function App() {
   });
   return (
     <div className="app">
-     {/*  <Login/> */}
-      <div className="wspBody">
-       
-        <SideBar activeChat={activeChat} setActiveChat={setActiveChat} user={user}/>
-        {(activeChat.id === undefined) ? <ChatIntro/> : <Chat user={user} />}
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path={`/`}>
+            <Login/>
+          </Route>
+          <Route path={`/home`}>
+            <div className="wspBody">
+              <SideBar activeChat={activeChat} setActiveChat={setActiveChat} user={user}/>
+              {(activeChat.id === undefined) ? <ChatIntro/> : <Chat user={user} />}
+            </div>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   ); 
 }
