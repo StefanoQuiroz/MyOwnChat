@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './NewChat.scss';
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Avatar } from '@material-ui/core';
+import login from '../../firebase/Api';
 
 const NewChat = (props) => {
     const {user, chats, showNewChat, setShowNewChat} = props;
     
-    const [listNewChat, setListNewChat] = useState([
-        {id: 123, avatar: "https://avatars.githubusercontent.com/u/72056993?v=4", name: "Stefano"},
-        {id: 123, avatar: "https://avatars.githubusercontent.com/u/72056993?v=4", name: "Stefano"},
-        {id: 123, avatar: "https://avatars.githubusercontent.com/u/72056993?v=4", name: "Stefano"},
-        {id: 123, avatar: "https://avatars.githubusercontent.com/u/72056993?v=4", name: "Stefano"},
-        {id: 123, avatar: "https://avatars.githubusercontent.com/u/72056993?v=4", name: "Stefano"}
-    ]);
+    const [listNewChat, setListNewChat] = useState([]);
+
+    useEffect(() => {
+        const getList = async () => {
+            if(user !== null){
+                const results = await login.getContactList(user.id);
+                setListNewChat(results);
+            }
+        }
+        getList();
+    }, [user])
+
+    const addNewChat = async (user2) => {
+        await login.addNewChat(user, user2);
+    }
 
     const onClickClose = () => {
         setShowNewChat(false)
@@ -28,7 +37,7 @@ const NewChat = (props) => {
             </div>
             <div className="newChatList">
                 {listNewChat && listNewChat.map((item, index)=> (
-                    <div className="newChatListItem" key={index}>
+                    <div className="newChatListItem" key={index} onClick={()=>addNewChat(item)}>
                         <Avatar className="itemAvatar" src={item.avatar} />
                         <div className="newChatItemName">
                             {item.name}

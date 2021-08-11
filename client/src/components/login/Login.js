@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import './Login.scss';
 import { useHistory } from 'react-router-dom' ;
 import { Button } from '@material-ui/core';
-/* import { Avatar } from '@material-ui/core';
-import { BiUser } from "react-icons/bi"; */
-const Login = () => {
-    const history = useHistory();
-    const onRegister = () => {
-        history.push(`/home`);
+import login from '../../firebase/Api';
+
+const Login = (props) => {
+    const {onReceive} = props;
+    //const history = useHistory();
+    const onRegister = async () => {
+        let result = await login.googlePopUp();
+        if(result){
+            onReceive(result.user);
+        } else {
+            alert("error");
+        }
+        //history.push(`/home`);
     }
     return (
         <div className="login">

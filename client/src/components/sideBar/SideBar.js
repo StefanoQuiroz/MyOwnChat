@@ -12,12 +12,7 @@ import NewChat from '../newChat/NewChat';
 const SideBar = (props) => {
     const {activeChat,setActiveChat, user} = props 
 
-    const [chats, setChats] = useState([
-        {id: 1, name: "Stefano", message:"Hola Como estas", avatar: user.avatar },
-        {id: 2, name: "Piero", message:"Hola Como estas", avatar: user.avatar },
-        {id: 3, name: "Andrés", message:"Hola Como estas", avatar: user.avatar },
-        {id: 4, name: "Xavier", message:"Hola Como estas", avatar: user.avatar }
-    ]);
+    const [chats, setChats] = useState([]);
 
     const [showNewChat, setShowNewChat] = useState(false);
     const onClickNewChat = () => {
@@ -27,7 +22,7 @@ const SideBar = (props) => {
         <div className="sideBar">
            
             <div className="sideBarHeader">
-                <Avatar className="sideBarAvatar" src="https://avatars.githubusercontent.com/u/72056993?v=4"/>
+                <Avatar className="sideBarAvatar" src={user.avatar}/>
                 <div className="sideBarHeaderRight">
                     <DonutLargeIcon style={{color: "#919191", cursor: "pointer"}}/>
                     <ChatIcon onClick={onClickNewChat} style={{color: "#919191", cursor: "pointer"}}/>
