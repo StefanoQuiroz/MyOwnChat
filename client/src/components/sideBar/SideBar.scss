@@ -7,17 +7,21 @@
 .sideBarHeader{
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 10px;
     border-right: 1px solid lightgray;
     .sideBarAvatar{
         cursor: pointer;
     }
 }
+.sideBarHeaderRight .MuiSvgIcon-root {
+        margin-right: 0rem;
+        font-size: 24px !important;
+}
 
-.sideBarHeaderRight{
+.sideBarHeaderRight{   
     display: flex;
     align-items: center; 
-    justify-content: space-between;
+    justify-content: flex-end;
     min-width: 10vw;
 }
 
