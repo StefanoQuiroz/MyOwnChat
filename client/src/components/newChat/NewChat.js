@@ -12,7 +12,7 @@ const NewChat = (props) => {
     useEffect(() => {
         const getList = async () => {
             if(user !== null){
-                const results = await login.getContactList(user.id);
+                let results = await login.getContactList(user.id);
                 setListNewChat(results);
             }
         }

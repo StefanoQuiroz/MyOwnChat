@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import './Login.scss';
-import { useHistory } from 'react-router-dom' ;
 import { Button } from '@material-ui/core';
 import login from '../../firebase/Api';
 
 const Login = (props) => {
     const {onReceive} = props;
-    //const history = useHistory();
+    
     const onRegister = async () => {
         let result = await login.googlePopUp();
         if(result){

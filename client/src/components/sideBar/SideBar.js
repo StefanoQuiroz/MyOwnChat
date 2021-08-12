@@ -3,7 +3,7 @@ import './SideBar.scss';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Avatar, IconButton } from '@material-ui/core';
+import { Avatar } from '@material-ui/core';
 import { AiOutlineSearch } from "react-icons/ai";
 import SideBarChat from '../sideBarChat/SideBarChat';
 import NewChat from '../newChat/NewChat';
@@ -12,20 +12,29 @@ import login from '../../firebase/Api';
 const SideBar = (props) => {
     const {activeChat,setActiveChat, user} = props 
 
+    //const [chats, setChats] = useState([]);
+    /* const [chats, setChats] = useState([
+        {id: 1, name: "Stefano", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" , message: "Hola joe", time: "12:45"},
+        {id: 2, name: "Piero", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
+        {id: 3, name: "Andrés", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" },
+        {id: 4, name: "Xavier", avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png" }
+    ]); */
+
     const [chats, setChats] = useState([]);
 
     const [showNewChat, setShowNewChat] = useState(false);
 
     useEffect(()=> {
         if(user !== null){
-            const unsubscribe = login.onChatList(user.id, setChats);
-            return unsubscribe;
+            const unsub = login.onChatList(user.id, setChats);
+            return unsub;
         }
     }, [user])
 
     const onClickNewChat = () => {
         setShowNewChat(true);
     }
+
     return (
         <div className="sideBar">
            
