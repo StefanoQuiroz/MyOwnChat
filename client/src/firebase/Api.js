@@ -71,6 +71,14 @@ const DB = firebaseApp.firestore(); //manipulacion de datos
                  }
              }
          })
+     },
+     onChatContent : (userId, setListMessages) => {
+         return DB.collection("users").doc(userId).onSnapshot((doc)=>{
+             if(doc.exists){
+                 let data = doc.data();
+                 setListMessages(data.messages);
+             }
+         })
      }
  }
  

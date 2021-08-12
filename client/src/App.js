@@ -51,7 +51,7 @@ function App() {
     <div className="app">
       <div className="wspBody">
         <SideBar activeChat={activeChat} setActiveChat={setActiveChat} user={user}/>
-        {(activeChat.id === undefined) ? <ChatIntro/> : <Chat user={user} />}
+        {(activeChat.id === undefined) ? <ChatIntro/> : <Chat user={user} data={activeChat} />}
       </div>
     </div>
   ); 

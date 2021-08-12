@@ -8,10 +8,11 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { MdSend, MdClose} from "react-icons/md";
 import EmojiPicker from 'emoji-picker-react';
 import MessageItem from '../messageItem/MessageItem';
+import login from '../../firebase/Api';
 
 const Chat = (props) => {
 
-    const {user} = props;
+    const {user, data} = props;
     const name = useRef();
     let recognition = null;
     let SpeechRecognition = window.webkitSpeechRecognition;
@@ -29,7 +30,7 @@ const Chat = (props) => {
     const [emojiOpen, setEmojiOpen] = useState(false);
     const [listening, setListening] = useState(false);
     const [input, setInput] = useState("");
-    const [listMessages, setListMessages] = useState([
+    /* const [listMessages, setListMessages] = useState([
         {name:123, message: "Hola como va?1"},
         {name: 123, message: "Hola como va?2"},
         {name: 1234, message: "Hola como va?3"},
@@ -54,8 +55,15 @@ const Chat = (props) => {
         {name:123, message: "Hola como va?1"},
         {name: 123, message: "Hola como va?2"},
         {name: 1234, message: "Hola como va?3"}
-    ]);
+    ]); */
+
+    const [listMessages, setListMessages] = useState([])
     
+    useEffect(() => {
+        setListMessages([]);
+        let unsub = login.onChatContent(data.id, setListMessages);
+        return unsub;
+    }, [data.id])
     //Para enviar al último chat de cada sala
     useEffect(()=>{
         if(name.current.scrollHeight > name.current.offsetHeight){
@@ -104,9 +112,9 @@ const Chat = (props) => {
             {/* HEADER */}
 
             <div className="chatHeader">
-                <Avatar/>
+                <Avatar src={data.avatar}/>
                 <div className="chatHeaderInfo">
-                    <h3>Nombre</h3>
+                    <h3>{data.nombre}</h3>
                     <p>últ. vez hoy a las(s) ... </p>
                 </div>
                 <div className="chatHeaderRight">
