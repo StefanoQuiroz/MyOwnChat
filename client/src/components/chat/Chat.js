@@ -19,8 +19,8 @@ const Chat = (props) => {
     if(SpeechRecognition !== undefined){
         //escuchar el sonido
         recognition = new SpeechRecognition();
-        //recognition.lang="pt-BR";
-        recognition.lang="es-CL";
+        recognition.lang="pt-BR";
+        //recognition.lang="es-CL";
         //recognition.lang="en-GB";
         //recognition.lang="it-IT";
         //recognition.lang=["pt-BR", "es-AR", "es-CL", "es-PE", "es-MX", "es-VE", "it-IT", "fr-FR", "de-DE", "en-GB", "en-US"]
