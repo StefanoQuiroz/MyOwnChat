@@ -72,13 +72,42 @@ const DB = firebaseApp.firestore(); //manipulacion de datos
              }
          })
      },
-     onChatContent : (userId, setListMessages) => {
-         return DB.collection("users").doc(userId).onSnapshot((doc)=>{
+     onChatContent : (userId, setListMessages, setUsers) => {
+         return DB.collection("chats").doc(userId).onSnapshot((doc)=>{
              if(doc.exists){
                  let data = doc.data();
                  setListMessages(data.messages);
+                 setUsers(data.users);
              }
          })
+     },
+     sendMessage: async (chatData, userId, type, body, users) => {
+         DB.collection("chats").doc(chatData.id).update({
+             messages: firebase.firestore.FieldValue.arrayUnion({
+                 type: type,
+                 name: userId,
+                 message: body,
+                 date: new Date()
+
+             })
+         });
+
+         for(let i in users){
+             let user = await DB.collection("users").doc(users[i]).get();
+             let userData = user.data();
+             if(userData.chats){
+                 let chatsCopy = [...userData.chats];
+                 for(let e in chatsCopy){
+                     if(chatsCopy[e].id ===  chatData.id){
+                         chatsCopy[e].message = body;
+                         chatsCopy[e].lastDate = new Date();
+                     }
+                 }
+                 await DB.collection("users").doc(users[i]).update({
+                     chats: chatsCopy
+                 })
+             }
+         }
      }
  }
  

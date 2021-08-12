@@ -12,7 +12,7 @@ import login from '../../firebase/Api';
 
 const Chat = (props) => {
 
-    const {user, data} = props;
+    const {user, setUser, data} = props;
     const name = useRef();
     let recognition = null;
     let SpeechRecognition = window.webkitSpeechRecognition;
@@ -57,11 +57,12 @@ const Chat = (props) => {
         {name: 1234, message: "Hola como va?3"}
     ]); */
 
-    const [listMessages, setListMessages] = useState([])
+    const [listMessages, setListMessages] = useState([]);
+    const [users, setUsers] = useState([]);
     
     useEffect(() => {
         setListMessages([]);
-        let unsub = login.onChatContent(data.id, setListMessages);
+        let unsub = login.onChatContent(data.id, setListMessages, setUsers);
         return unsub;
     }, [data.id])
     //Para enviar al último chat de cada sala
@@ -101,9 +102,20 @@ const Chat = (props) => {
             recognition.start();
          }
     }
-
+    
+    
     const onClickMessage = () => {
-
+        if(input !== ""){
+            login.sendMessage(data, user.id, "text", input, users);
+            setInput("");
+            setEmojiOpen(false);
+        }
+    }
+    
+    const onKeyUp = (event) => {
+        if(event.keyCode === 13){
+            onClickMessage();
+        }
     }
 
     return (
@@ -114,7 +126,7 @@ const Chat = (props) => {
             <div className="chatHeader">
                 <Avatar src={data.avatar}/>
                 <div className="chatHeaderInfo">
-                    <h3>{data.nombre}</h3>
+                    <h3>{data.name}</h3>
                     <p>últ. vez hoy a las(s) ... </p>
                 </div>
                 <div className="chatHeaderRight">
@@ -160,10 +172,11 @@ const Chat = (props) => {
                 <IconButton>
                     <AttachFile className="Icons"/>
                 </IconButton>
-                <form>
-                    <input type="text" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Escribe un mensaje aquí"/>
-                    <button /* onClick={sendMessage} */ type="submit">Escribe un mensaje aquí</button>
-                </form>
+                {/* input  */}
+                <div className="input">
+                    <input type="text" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Escribe un mensaje aquí" onKeyUp={event => onKeyUp(event)}/>
+                   {/*  <button type="submit">Escribe un mensaje aquí</button> */}
+                </div>
                 {input === "" ? 
                     <IconButton onClick={onClickMicro}>
                         <BiMicrophone className="Icons"  style={{color: listening ? "#126ece" : "#919191"}}/>

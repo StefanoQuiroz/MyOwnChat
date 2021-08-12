@@ -19,11 +19,11 @@ function App() {
     } */
   //);
 
-  const [user,setUser] = useState({
+  /* const [user,setUser] = useState({
     id: "gzI6x0LHmqed1QwsyWeQhvdMp3z1",
     name: "Stefano Quiroz",
     avatar: "https://lh3.googleusercontent.com/a-/AOh14GhXnrJEB2M6znsik28lK0szZJwN4lnNP0XgZEz1=s96-c"
-  })
+  }) */
 
   //prueba
   /* const [user,setUser] = useState({
@@ -31,6 +31,8 @@ function App() {
     avatar: "https://freepikpsd.com/media/2019/10/avatar-icon-png-3-Transparent-Images.png",
     name: "Stefano"
   }); */
+
+  const [user,setUser] = useState(null)
 
   const loginData = async (usuario) => {
     let newUser = {
@@ -51,7 +53,7 @@ function App() {
     <div className="app">
       <div className="wspBody">
         <SideBar activeChat={activeChat} setActiveChat={setActiveChat} user={user}/>
-        {(activeChat.id === undefined) ? <ChatIntro/> : <Chat user={user} data={activeChat} />}
+        {(activeChat.id === undefined) ? <ChatIntro/> : <Chat user={user} setUser={setUser} data={activeChat} />}
       </div>
     </div>
   ); 
