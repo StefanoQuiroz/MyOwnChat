@@ -67,7 +67,22 @@ const DB = firebaseApp.firestore(); //manipulacion de datos
              if(doc.exists){
                  let data = doc.data();
                  if(data.chats){
-                     setChats(data.chats);
+                     let chats = [...data.chats];
+                     chats.sort((a,b) => {
+                         if(a.lastDate === undefined){
+                             return -1;
+                         }
+                         if(b.lastDate === undefined){
+                             return -1;
+                         }
+                         
+                         if(a.lastDate.seconds < b.lastDate.seconds){
+                             return 1;
+                         } else {
+                             return -1;
+                         }
+                     });
+                     setChats(chats);
                  }
              }
          })
